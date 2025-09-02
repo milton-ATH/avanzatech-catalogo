@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvanzaTech LLC - Transformación Educativa Puerto Rico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1e3a8a 0%, #059669 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .hero-section {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .hero-section * {
+            color: white !important;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #b45309, #ea580c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(180, 83, 9, 0.3);
+        }
+
+        .logo::after {
+            content: 'AT';
+            color: white;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: white !important;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .tagline {
+            font-size: 1.4rem;
+            color: white !important;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .mission {
+            font-size: 1.1rem;
+            color: white !important;
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+            margin-top: -10px;
+        }
+
+        .nav-section {
+            background: rgba(248, 250, 252, 0.98);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid #1e3a8a;
+            color: #1e3a8a;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: #1e3a8a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.3);
+        }
+
+        .content-section {
+            display: none;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .value-proposition {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .value-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .value-desc {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .value-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #059669;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .service-desc {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: #475569;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #059669;
+            font-weight: 700;
+        }
+
+        .workshop-count {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, #374151, #4b5563);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .pricing-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f59e0b;
+            margin-bottom: 1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 900px;
+            max-height: 80vh;
+            overflow-y: auto;
+            margin: 2rem;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        .workshop-detail {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #1e3a8a;
+        }
+
+        .workshop-title {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .workshop-objective {
+            background: rgba(30, 58, 138, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3);
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #065f46, #047857);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .nav-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="logo-container">
+            <div class="logo"></div>
+            <h1>AvanzaTech LLC</h1>
+        </div>
+        <p class="tagline">Desarrollo Profesional Educativo Especializado</p>
+        <p class="mission">
+            "Transformando la educación puertorriqueña mediante la integración inteligente de pedagogía, tecnología e inteligencia emocional"
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="nav-section">
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="showSection('inicio')">Inicio</button>
+                <button class="nav-btn" onclick="showSection('servicios')">Servicios</button>
+                <button class="nav-btn" onclick="showSection('metodologia')">Metodología</button>
+                <button class="nav-btn" onclick="showSection('precios')">Inversión</button>
+                <button class="nav-btn" onclick="showSection('contacto')">Contacto</button>
+            </div>
+        </div>
+
+        <!-- SECCIÓN INICIO -->
+        <div id="inicio" class="content-section active">
+            <h2 class="section-title">Transformando la Educación Puertorriqueña</h2>
+            <p class="section-subtitle">
+                Desarrollo profesional especializado que integra pedagogía de vanguardia, tecnología emergente y competencias del siglo XXI, diseñado específicamente para el contexto educativo de Puerto Rico.
+            </p>
+
+            <!-- Impacto y Credibilidad -->
+            <div style="background: linear-gradient(135deg, #f8fafc, #e2e8f0); padding: 3rem 2rem; border-radius: 20px; margin: 2rem 0;">
+                <h3 style="color: #1e3a8a; margin-bottom: 2rem; text-align: center; font-size: 2rem;">Nuestro Impacto Educativo</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <strong style="color: #ea580c; font-size: 3rem; display: block; margin-bottom: 0.5rem;">500+</strong>
+                        <span style="color: #374151; font-weight: 600;">Educadores Capacitados</span>
+                        <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">Docentes y líderes educativos transformados</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <strong style="color: #ea580c; font-size: 3rem; display: block; margin-bottom: 0.5rem;">50+</strong>
+                        <span style="color: #374151; font-weight: 600;">Instituciones Educativas</span>
+                        <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">Escuelas y universidades beneficiadas</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <strong style="color: #ea580c; font-size: 3rem; display: block; margin-bottom: 0.5rem;">91</strong>
+                        <span style="color: #374151; font-weight: 600;">Talleres Especializados</span>
+                        <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">Contenido actualizado al 2025</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <strong style="color: #ea580c; font-size: 3rem; display: block; margin-bottom: 0.5rem;">95%</strong>
+                        <span style="color: #374151; font-weight: 600;">Satisfacción</span>
+                        <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">Educadores recomiendan nuestros servicios</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Por Qué Elegir AvanzaTech -->
+            <div style="background: #ffffff; padding: 3rem 2rem; border-radius: 20px; margin: 2rem 0; border: 1px solid #e5e7eb;">
+                <h3 style="color: #1e3a8a; margin-bottom: 2rem; text-align: center; font-size: 2rem;">¿Por Qué Elegir AvanzaTech LLC?</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="text-align: center; padding: 1.5rem;">
+                        <div style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">🎯</div>
+                        <h4 style="color: #1e3a8a; margin-bottom: 1rem; font-size: 1.3rem;">Especialización Puerto Rico</h4>
+                        <p style="color: #6b7280; line-height: 1.6;">Únicos en combinar estándares internacionales con la realidad cultural, lingüística y socioeconómica de Puerto Rico.</p>
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem;">
+                        <div style="background: linear-gradient(135deg, #059669, #10b981); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">🚀</div>
+                        <h4 style="color: #1e3a8a; margin-bottom: 1rem; font-size: 1.3rem;">Innovación Probada</h4>
+                        <p style="color: #6b7280; line-height: 1.6;">Metodologías de vanguardia respaldadas por investigación educativa y validadas en contextos reales puertorriqueños.</p>
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem;">
+                        <div style="background: linear-gradient(135deg, #ea580c, #f97316); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">🤝</div>
+                        <h4 style="color: #1e3a8a; margin-bottom: 1rem; font-size: 1.3rem;">Acompañamiento Integral</h4>
+                        <p style="color: #6b7280; line-height: 1.6;">No solo capacitamos, acompañamos la implementación hasta lograr la transformación educativa sostenible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonios -->
+            <div style="background: linear-gradient(135deg, #065f46, #047857); color: white; padding: 3rem 2rem; border-radius: 20px; margin: 2rem 0;">
+                <h3 style="margin-bottom: 2rem; text-align: center; font-size: 2rem;">Lo Que Dicen Nuestros Educadores</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                        <p style="font-style: italic; margin-bottom: 1rem; line-height: 1.6;">"AvanzaTech transformó completamente mi manera de enseñar. Los talleres de IA no solo me dieron herramientas, sino confianza para innovar en mi aula."</p>
+                        <strong>— Dra. María Rodríguez, Directora Académica</strong>
+                        <br><span style="opacity: 0.8; font-size: 0.9rem;">Escuela Especializada, San Juan</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                        <p style="font-style: italic; margin-bottom: 1rem; line-height: 1.6;">"El enfoque culturalmente sustentado de AvanzaTech respeta nuestra identidad mientras nos prepara para competir globalmente."</p>
+                        <strong>— Prof. Carlos Martínez, Maestro STEAM</strong>
+                        <br><span style="opacity: 0.8; font-size: 0.9rem;">Escuela Superior, Bayamón</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                        <p style="font-style: italic; margin-bottom: 1rem; line-height: 1.6;">"La mentoría personalizada de Milton fue clave. No es solo teoría, es implementación real con resultados medibles en mis estudiantes."</p>
+                        <strong>— Lcda. Ana López, Coordinadora Educativa</strong>
+                        <br><span style="opacity: 0.8; font-size: 0.9rem;">Distrito Escolar, Ponce</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Llamada a la Acción -->
+            <div style="text-align: center; background: #f8fafc; padding: 3rem 2rem; border-radius: 20px; margin: 2rem 0;">
+                <h3 style="color: #1e3a8a; margin-bottom: 1rem; font-size: 2rem;">¿Listo para Transformar su Institución Educativa?</h3>
+                <p style="color: #6b7280; margin-bottom: 2rem; font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Comience con una consultoría gratuita personalizada. Evaluamos sus necesidades y diseñamos un plan específico para su contexto educativo.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <a href="tel:939-358-1722" class="cta-button" style="margin: 0.5rem;">📞 Llamar Ahora</a>
+                    <a href="mailto:milton@avanza.tech" class="cta-button" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); margin: 0.5rem;">✉️ Consultoría Gratuita</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN SERVICIOS -->
+        <div id="servicios" class="content-section">
+            <h2 class="section-title">Áreas de Especialización</h2>
+            <p class="section-subtitle">
+                Ocho pilares fundamentales para la transformación educativa integral
+            </p>
+
+            <div class="services-grid">
+                <div class="service-card" onclick="showServiceModal('ia')">
+                    <span class="service-icon">🤖</span>
+                    <h3 class="service-title">Inteligencia Artificial Educativa</h3>
+                    <p class="service-desc">
+                        Integración responsable y pedagógicamente fundamentada de IA en todos los procesos educativos, desde la planificación hasta la evaluación.
+                    </p>
+                    <ul class="service-features">
+                        <li>Alfabetización en IA para educadores</li>
+                        <li>Implementación transversal por materias</li>
+                        <li>Gestión institucional inteligente</li>
+                        <li>Ética y ciudadanía digital</li>
+                    </ul>
+                    <span class="workshop-count">15 talleres especializados</span>
+                </div>
+
+                <div class="service-card" onclick="showServiceModal('datos')">
+                    <span class="service-icon">📊</span>
+                    <h3 class="service-title">Análisis de Datos Educativos</h3>
+                    <p class="service-desc">
+                        Transformación de datos en insights accionables para la toma de decisiones pedagógicas y administrativas basadas en evidencia.
+                    </p>
+                    <ul class="service-features">
+                        <li>Dashboard ejecutivos personalizados</li>
+                        <li>Análisis predictivo de rendimiento</li>
+                        <li>Métricas de bienestar socioemocional</li>
+                        <li>ROI de inversiones educativas</li>
+                    </ul>
+                    <span class="workshop-count">12 talleres analíticos</span>
+                </div>
+
+                <div class="service-card" onclick="showServiceModal('steam')">
+                    <span class="service-icon">🔬</span>
+                    <h3 class="service-title">STEAM Innovador</h3>
+                    <p class="service-desc">
+                        Metodologías de vanguardia que integran ciencias, tecnología, ingeniería, artes y matemáticas con enfoque en sostenibilidad y relevancia cultural.
+                    </p>
+                    <ul class="service-features">
+                        <li>Aprendizaje basado en fenómenos</li>
+                        <li>Realidad aumentada y modelos 3D</li>
+                        <li>Robótica con materiales reciclados</li>
+                        <li>Laboratorios virtuales</li>
+                    </ul>
+                    <span class="workshop-count">10 talleres prácticos</span>
+                </div>
+
+                <div class="service-card" onclick="showServiceModal('emocional')">
+                    <span class="service-icon">❤️</span>
+                    <h3 class="service-title">Inteligencia Emocional Educativa</h3>
+                    <p class="service-desc">
+                        Desarrollo integral de competencias socioemocionales para estudiantes, docentes y líderes educativos, con énfasis en el bienestar post-pandemia.
+                    </p>
+                    <ul class="service-features">
+                        <li>SEL integrado al currículo</li>
+                        <li>Prevención de burnout docente</li>
+                        <li>Liderazgo emocionalmente inteligente</li>
+                        <li>Mediación y resolución de conflictos</li>
+                    </ul>
+                    <span class="workshop-count">12 talleres transformadores</span>
+                </div>
+
+                <div class="service-card" onclick="showServiceModal('inclusion')">
+                    <span class="service-icon">♿</span>
+                    <h3 class="service-title">Educación Inclusiva Avanzada</h3>
+                    <p class="service-desc">
+                        Estrategias innovadoras para crear ambientes de aprendizaje verdaderamente inclusivos que celebren la diversidad y potencien todas las capacidades.
+                    </p>
+                    <ul class="service-features">
+                        <li>Diseño Universal de Aprendizaje (UDL)</li>
+                        <li>Tecnologías asistivas integradas</li>
+                        <li>Co-enseñanza efectiva</li>
+                        <li>Atención a estudiantes excepcionales</li>
+                    </ul>
+                    <span class="workshop-count">10 talleres inclusivos</span>
+                </div>
+
+                <div class="service-card" onclick="showServiceModal('evaluacion')">
+                    <span class="service-icon">📋</span>
+                    <h3 class="service-title">Assessment del Siglo XXI</h3>
+                    <p class="service-desc">
+                        Revolucionando la evaluación tradicional hacia sistemas adaptativos, auténticos y formativos que celebren el crecimiento integral del estudiante.
+                    </p>
+                    <ul class="service-features">
+                        <li>Evaluación adaptativa con IA</li>
+                        <li>Portafolios digitales integrales</li>
+                        <li>Assessment basado en competencias</li>
+                        <li>Medición de impacto social</li>
+                    </ul>
+                    <span class="workshop-count">13 talleres innovadores</span>
+                </div>
+
+                <div class="service-card" onclick="showServiceModal('liderazgo')">
+                    <span class="service-icon">👑</span>
+                    <h3 class="service-title">Liderazgo Educativo 4.0</h3>
+                    <p class="service-desc">
+                        Desarrollo de capacidades de liderazgo transformacional que combinen visión estratégica, inteligencia emocional y competencia digital.
+                    </p>
+                    <ul class="service-features">
+                        <li>Transformación digital institucional</li>
+                        <li>Gestión basada en datos e intuición</li>
+                        <li>Comunicación de crisis con compasión</li>
+                        <li>Liderazgo distribuido y colaborativo</li>
+                    </ul>
+                    <span class="workshop-count">9 talleres ejecutivos</span>
+                </div>
+
+                <div class="service-card" onclick="showServiceModal('curriculo')">
+                    <span class="service-icon">📚</span>
+                    <h3 class="service-title">Currículo Integral del Siglo XXI</h3>
+                    <p class="service-desc">
+                        Diseño curricular que integra competencias académicas, digitales, socioemocionales y culturales para formar ciudadanos globales con identidad local.
+                    </p>
+                    <ul class="service-features">
+                        <li>Mapeo curricular con IA</li>
+                        <li>Aprendizaje interdisciplinario</li>
+                        <li>Currículo culturalmente sustentado</li>
+                        <li>Proyectos de impacto comunitario</li>
+                    </ul>
+                    <span class="workshop-count">10 talleres curriculares</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN METODOLOGÍA -->
+        <div id="metodologia" class="content-section">
+            <h2 class="section-title">Nuestra Metodología</h2>
+            <p class="section-subtitle">
+                Proceso científico de transformación educativa basado en evidencia y adaptado a la realidad puertorriqueña
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; padding: 2rem; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                    <h3 style="margin-bottom: 1rem;">1. Diagnóstico Integral</h3>
+                    <p>Evaluación exhaustiva de necesidades institucionales, recursos disponibles, cultura organizacional y contexto comunitario.</p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #059669, #10b981); color: white; padding: 2rem; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                    <h3 style="margin-bottom: 1rem;">2. Personalización Estratégica</h3>
+                    <p>Diseño de plan de desarrollo profesional único, alineado con estándares locales y federales, adaptado a su visión institucional.</p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #ea580c, #f97316); color: white; padding: 2rem; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+                    <h3 style="margin-bottom: 1rem;">3. Implementación Activa</h3>
+                    <p>Talleres interactivos, coaching personalizado y mentoría continua con metodologías de aprendizaje experiencial y colaborativo.</p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #0891b2, #06b6d4); color: white; padding: 2rem; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📈</div>
+                    <h3 style="margin-bottom: 1rem;">4. Medición de Impacto</h3>
+                    <p>Evaluación continua de resultados con métricas cuantitativas y cualitativas, ajustes adaptativos y documentación de transformación.</p>
+                </div>
+            </div>
+
+            <div style="background: #f8fafc; padding: 2rem; border-radius: 15px; margin-top: 3rem;">
+                <h3 style="color: #1e3a8a; margin-bottom: 1.5rem; text-align: center;">Principios Pedagógicos Fundamentales</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #1e3a8a;">
+                        <h4 style="color: #1e3a8a; margin-bottom: 0.5rem;">Constructivismo Social</h4>
+                        <p style="color: #64748b; font-size: 0.9rem;">Aprendizaje colaborativo y significativo basado en la construcción colectiva del conocimiento.</p>
+                    </div>
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #059669;">
+                        <h4 style="color: #059669; margin-bottom: 0.5rem;">Andragogía Aplicada</h4>
+                        <p style="color: #64748b; font-size: 0.9rem;">Respeto por la experiencia docente y metodologías específicas para aprendizaje adulto.</p>
+                    </div>
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ea580c;">
+                        <h4 style="color: #ea580c; margin-bottom: 0.5rem;">Pedagogía Culturalmente Sustentada</h4>
+                        <p style="color: #64748b; font-size: 0.9rem;">Valoración y celebración de la identidad cultural puertorriqueña como base del aprendizaje.</p>
+                    </div>
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #0891b2;">
+                        <h4 style="color: #0891b2; margin-bottom: 0.5rem;">Desarrollo Integral</h4>
+                        <p style="color: #64748b; font-size: 0.9rem;">Atención simultánea a competencias cognitivas, emocionales, sociales y tecnológicas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN PRECIOS -->
+        <div id="precios" class="content-section">
+            <h2 class="section-title">Inversión en Transformación</h2>
+            <p class="section-subtitle">
+                Modalidades flexibles de desarrollo profesional adaptadas a diferentes necesidades y presupuestos institucionales
+            </p>
+
+            <div class="pricing-section">
+                <h3 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">Modalidades de Servicio</h3>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-title">Talleres Intensivos</div>
+                        <div class="pricing-amount">$1,700</div>
+                        <div style="margin-bottom: 1rem; opacity: 0.9;">Base: 10 participantes</div>
+                        <ul style="text-align: left; list-style: none; margin-bottom: 2rem;">
+                            <li style="padding: 0.3rem 0;">✓ 6 horas de contacto directo</li>
+                            <li style="padding: 0.3rem 0;">✓ Materiales digitales incluidos</li>
+                            <li style="padding: 0.3rem 0;">✓ Certificación oficial</li>
+                            <li style="padding: 0.3rem 0;">✓ Seguimiento por 30 días</li>
+                        </ul>
+                        <div style="font-size: 0.9rem; opacity: 0.8;">+$170 por participante adicional (máx. 30)</div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-title">Coaching Especializado</div>
+                        <div class="pricing-amount">$305-525</div>
+                        <div style="margin-bottom: 1rem; opacity: 0.9;">1-3 participantes</div>
+                        <ul style="text-align: left; list-style: none; margin-bottom: 2rem;">
+                            <li style="padding: 0.3rem 0;">✓ 2-3 horas personalizadas</li>
+                            <li style="padding: 0.3rem 0;">✓ Plan de implementación individual</li>
+                            <li style="padding: 0.3rem 0;">✓ Recursos personalizados</li>
+                            <li style="padding: 0.3rem 0;">✓ Seguimiento semanal</li>
+                        </ul>
+                        <div style="font-size: 0.9rem; opacity: 0.8;">Implementación inmediata garantizada</div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-title">Mentoría Continua</div>
+                        <div class="pricing-amount">$660</div>
+                        <div style="margin-bottom: 1rem; opacity: 0.9;">Proceso individual</div>
+                        <ul style="text-align: left; list-style: none; margin-bottom: 2rem;">
+                            <li style="padding: 0.3rem 0;">✓ 10 horas distribuidas</li>
+                            <li style="padding: 0.3rem 0;">✓ Acompañamiento en el aula</li>
+                            <li style="padding: 0.3rem 0;">✓ Retroalimentación continua</li>
+                            <li style="padding: 0.3rem 0;">✓ Desarrollo sostenido</li>
+                        </ul>
+                        <div style="font-size: 0.9rem; opacity: 0.8;">En el ambiente natural de trabajo</div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-title">Webinars Demostrativos</div>
+                        <div class="pricing-amount">$1,016</div>
+                        <div style="margin-bottom: 1rem; opacity: 0.9;">10-20 participantes</div>
+                        <ul style="text-align: left; list-style: none; margin-bottom: 2rem;">
+                            <li style="padding: 0.3rem 0;">✓ 2 horas interactivas</li>
+                            <li style="padding: 0.3rem 0;">✓ Demostración práctica</li>
+                            <li style="padding: 0.3rem 0;">✓ Sesión Q&A extendida</li>
+                            <li style="padding: 0.3rem 0;">✓ Grabación incluida</li>
+                        </ul>
+                        <div style="font-size: 0.9rem; opacity: 0.8;">4 horas: $1,750</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+                    <h4 style="margin-bottom: 1rem; font-size: 1.3rem;">Fuentes de Financiamiento Elegibles</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;">Título I, Parte A</div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;">Título II, Parte A</div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;">Título III, Parte A</div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;">Título IV, Parte A</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN CONTACTO -->
+        <div id="contacto" class="content-section">
+            <h2 class="section-title">Inicie Su Transformación Educativa</h2>
+            <p class="section-subtitle">
+                Consultoría gratuita para evaluar necesidades y diseñar su plan personalizado de desarrollo profesional
+            </p>
+
+            <div class="contact-section">
+                <h3 style="margin-bottom: 2rem; font-size: 2rem;">Contacto Directo</h3>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h4 style="margin-bottom: 1rem; color: #f59e0b;">📱 Teléfono</h4>
+                        <p style="font-size: 1.3rem; font-weight: 600;">939-358-1722</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">Disponible lunes a viernes, 8:00 AM - 6:00 PM</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4 style="margin-bottom: 1rem; color: #f59e0b;">📧 Correo Electrónico</h4>
+                        <p>milton@avanza.tech</p>
+                        <p>miltonfajardom@gmail.com</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">Respuesta garantizada en 24 horas</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4 style="margin-bottom: 1rem; color: #f59e0b;">🌐 Recursos Digitales</h4>
+                        <p>www.avanzatecllc.com</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Catálogo completo, testimonios y recursos adicionales</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h4 style="margin-bottom: 1rem; color: #f59e0b;">📍 Servicio</h4>
+                        <p>Toda la Isla de Puerto Rico</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Modalidades presencial, virtual e híbrida</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; text-align: center;">
+                    <a href="tel:939-358-1722" class="cta-button">Llamar Ahora</a>
+                    <a href="mailto:milton@avanza.tech" class="cta-button">Solicitar Consultoría</a>
+                    <a href="https://www.avanzatecllc.com/" target="_blank" class="cta-button" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6);">Visitar Sitio Web</a>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                    <h4 style="margin-bottom: 1rem;">Proceso de Consultoría Gratuita</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>1️⃣ Análisis de necesidades</div>
+                        <div>2️⃣ Evaluación de recursos</div>
+                        <div>3️⃣ Diseño de propuesta</div>
+                        <div>4️⃣ Plan de implementación</div>
+                        <div>5️⃣ Cronograma personalizado</div>
+                        <div>6️⃣ Métricas de éxito</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA SERVICIOS -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Navegación entre secciones
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remover clase active de todos los botones
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostrar sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activar botón correspondiente
+            event.target.classList.add('active');
+        }
+
+        // Datos de servicios para modales
+        const serviceData = {
+            ia: {
+                title: "Inteligencia Artificial Educativa",
+                description: "Transformación integral de la práctica educativa mediante la integración responsable de IA",
+                workshops: [
+                    {
+                        title: "Revoluciona la Educación: Integrando IA en Planificación y Evaluación (Básico)",
+                        desc: "Introducción práctica a la IA educativa, enfocada en optimizar procesos de planificación y sistemas de evaluación",
+                        objective: "Iniciar la transformación educativa mediante IA aplicada a tareas fundamentales del quehacer docente"
+                    },
+                    {
+                        title: "Innovación en el Aula: Explorando Herramientas de IA para Educación (Intermedio)",
+                        desc: "Exploración práctica de herramientas especializadas de IA para diversas actividades pedagógicas y administrativas",
+                        objective: "Ampliar el repertorio de herramientas tecnológicas para crear experiencias de aprendizaje innovadoras"
+                    },
+                    {
+                        title: "Domina la IA: Creación de Prompts y GPTs Especializados (Avanzado)",
+                        desc: "Desarrollo de competencias avanzadas para crear prompts efectivos y GPTs personalizados para estudiantes y asistentes virtuales",
+                        objective: "Dominar la programación conversacional para crear asistentes educativos personalizados y efectivos"
+                    },
+                    {
+                        title: "Integración de la Inteligencia Artificial en el Aula",
+                        desc: "Estrategias integrales para incorporar IA de manera transversal en todas las actividades del salón de clases",
+                        objective: "Crear ecosistemas de aprendizaje donde la IA potencia naturalmente cada interacción educativa"
+                    },
+                    {
+                        title: "ChatGPT y LLMs: Maximizando su Potencial Educativo",
+                        desc: "Uso estratégico de ChatGPT, Claude y otros modelos de lenguaje para enseñanza, aprendizaje y gestión educativa",
+                        objective: "Aprovechar al máximo los modelos de lenguaje mientras se mantiene la integridad académica"
+                    },
+                    {
+                        title: "IA para Crear Contenido Educativo de Alto Impacto",
+                        desc: "Generación inteligente de materiales didácticos, presentaciones dinámicas y recursos multimedia culturalmente relevantes",
+                        objective: "Acelerar la producción de recursos educativos excepcionales y contextualmente apropiados"
+                    },
+                    {
+                        title: "IA Transversal en STEAM",
+                        desc: "Aplicación específica de IA en ciencias, tecnología, ingeniería, artes y matemáticas con enfoque interdisciplinario",
+                        objective: "Potenciar el aprendizaje STEAM mediante herramientas inteligentes y experiencias inmersivas"
+                    },
+                    {
+                        title: "IA para Lenguaje y Comunicación",
+                        desc: "Herramientas de IA para español, inglés, análisis textual, escritura creativa y competencias comunicativas",
+                        objective: "Fortalecer habilidades lingüísticas y comunicativas usando asistencia inteligente personalizada"
+                    },
+                    {
+                        title: "Gestión Institucional Inteligente",
+                        desc: "Automatización administrativa, comunicación con familias, análisis predictivo y toma de decisiones basada en datos",
+                        objective: "Optimizar operaciones escolares y fundamentar decisiones estratégicas mediante inteligencia artificial"
+                    },
+                    {
+                        title: "IA para Educación Especial e Inclusión",
+                        desc: "Tecnologías asistivas inteligentes, comunicación aumentativa y personalización extrema para estudiantes con necesidades especiales",
+                        objective: "Empoderar la inclusión educativa mediante IA adaptativa, empática y centrada en la persona"
+                    },
+                    {
+                        title: "Assessment Inteligente y Retroalimentación Personalizada",
+                        desc: "Sistemas de evaluación adaptativos, corrección inteligente y retroalimentación instantánea contextualizada",
+                        objective: "Revolucionar la evaluación con sistemas que se adapten al ritmo y estilo de cada estudiante"
+                    },
+                    {
+                        title: "Ciudadanía Digital y Ética en IA",
+                        desc: "Formación integral para uso crítico, creación ética y ciudadanía responsable en la era de la inteligencia artificial",
+                        objective: "Cultivar pensamiento crítico y comportamiento ético ante los desafíos sociales de la IA"
+                    },
+                    {
+                        title: "IA Generativa: Multimedia Educativo Impactante",
+                        desc: "Creación de contenido visual, sonoro y audiovisual educativo con DALL-E, Midjourney, Suno y herramientas emergentes",
+                        objective: "Enriquecer experiencias de aprendizaje con contenido multimedia original y culturalmente contextualizado"
+                    },
+                    {
+                        title: "IA para Análisis de Datos Educativos",
+                        desc: "Interpretación inteligente de métricas estudiantiles, predicción de tendencias y visualización de datos institucionales",
+                        objective: "Transformar datos educativos en insights accionables para la mejora continua institucional"
+                    },
+                    {
+                        title: "Implementación Institucional Estratégica de IA",
+                        desc: "Liderazgo del cambio: políticas, capacitación, infraestructura, medición de impacto y sostenibilidad de IA educativa",
+                        objective: "Liderar la transformación digital institucional con IA de manera sistemática, ética y sostenible"
+                    }
+                ]
+            },
+            datos: {
+                title: "Análisis de Datos Educativos",
+                description: "Transformación de información en conocimiento accionable para la mejora educativa continua",
+                workshops: [
+                    {
+                        title: "Dashboard Ejecutivos para Líderes Educativos",
+                        desc: "Visualización estratégica de métricas clave de rendimiento institucional, estudiantil y organizacional",
+                        objective: "Empoderar líderes educativos con inteligencia de datos para decisiones estratégicas informadas y oportunas"
+                    },
+                    {
+                        title: "Análisis Predictivo de Rendimiento Estudiantil",
+                        desc: "Identificación temprana de estudiantes en riesgo académico mediante algoritmos de aprendizaje automático",
+                        objective: "Implementar sistemas de alerta temprana para intervenciones pedagógicas preventivas y efectivas"
+                    },
+                    {
+                        title: "Medición de Bienestar Socioemocional",
+                        desc: "Instrumentos y metodologías para evaluar clima escolar, salud emocional comunitaria y factores de resiliencia",
+                        objective: "Crear ecosistemas de bienestar basados en evidencia cuantitativa y cualitativa sistemática"
+                    },
+                    {
+                        title: "ROI de Inversiones Educativas",
+                        desc: "Metodologías para medir el retorno de inversión en programas, tecnologías y estrategias educativas",
+                        objective: "Justificar y optimizar inversiones educativas con métricas de impacto demostrables y sostenibles"
+                    },
+                    {
+                        title: "Google Analytics para Educación",
+                        desc: "Análisis de tráfico web educativo, comportamiento digital estudiantil y optimización de plataformas de aprendizaje",
+                        objective: "Optimizar experiencias digitales educativas basándose en patrones reales de uso y engagement"
+                    },
+                    {
+                        title: "Visualización de Datos con Power BI Educativo",
+                        desc: "Creación de reportes interactivos, dashboards dinámicos y storytelling visual con datos educativos",
+                        objective: "Comunicar insights educativos de manera visual, impactante y comprensible para todos los stakeholders"
+                    },
+                    {
+                        title: "Excel Avanzado para Análisis Educativo",
+                        desc: "Funciones avanzadas, tablas dinámicas, macros y automatización para procesar grandes volúmenes de datos educativos",
+                        objective: "Maximizar Excel como herramienta de análisis educativo sin necesidad de software especializado costoso"
+                    },
+                    {
+                        title: "Análisis de Tendencias de Asistencia y Ausentismo",
+                        desc: "Identificación de patrones, causas raíz y estrategias preventivas basadas en análisis estadístico profundo",
+                        objective: "Reducir ausentismo estudiantil mediante comprensión data-driven de factores influyentes"
+                    },
+                    {
+                        title: "Medición de Engagement y Participación",
+                        desc: "Métricas de participación estudiantil, engagement familiar y actividad en plataformas de aprendizaje",
+                        objective: "Cuantificar y mejorar la participación activa de toda la comunidad educativa"
+                    },
+                    {
+                        title: "Análisis de Efectividad Docente Basado en Datos",
+                        desc: "Métricas objetivas de impacto docente, análisis de prácticas efectivas y desarrollo profesional dirigido",
+                        objective: "Identificar y replicar prácticas docentes de alto impacto mediante evidencia cuantificable"
+                    },
+                    {
+                        title: "Segmentación y Personalización de Aprendizaje",
+                        desc: "Agrupación inteligente de estudiantes, personalización de rutas de aprendizaje y diferenciación basada en datos",
+                        objective: "Personalizar experiencias educativas mediante comprensión profunda de perfiles de aprendizaje individuales"
+                    },
+                    {
+                        title: "Evaluación de Programas e Intervenciones Educativas",
+                        desc: "Metodologías de investigación aplicada, diseño experimental y medición de impacto de innovaciones educativas",
+                        objective: "Demostrar científicamente la efectividad de programas educativos y fundamentar decisiones de continuidad"
+                    }
+                ]
+            },
+            steam: {
+                title: "STEAM Innovador",
+                description: "Integración de ciencias, tecnología, ingeniería, artes y matemáticas con metodologías de vanguardia",
+                workshops: [
+                    {
+                        title: "Aprendizaje Basado en Fenómenos Locales",
+                        desc: "Metodología finlandesa adaptada: explorar fenómenos naturales y sociales específicos de Puerto Rico",
+                        objective: "Conectar aprendizaje académico con realidades tangibles del contexto puertorriqueño para mayor relevancia"
+                    },
+                    {
+                        title: "Realidad Aumentada y Modelos 3D Educativos",
+                        desc: "Tecnologías inmersivas para visualizar conceptos abstractos de matemáticas, ciencias e ingeniería",
+                        objective: "Hacer tangible lo intangible mediante experiencias de aprendizaje multisensoriales e inmersivas"
+                    },
+                    {
+                        title: "Robótica Inclusiva y Sostenible",
+                        desc: "Construcción de robots educativos con materiales reciclados y programación accesible para todos",
+                        objective: "Democratizar la robótica educativa independientemente del presupuesto institucional o nivel socioeconómico"
+                    },
+                    {
+                        title: "Laboratorios Virtuales Avanzados",
+                        desc: "Simulaciones científicas interactivas y seguras para experimentación ilimitada sin restricciones físicas",
+                        objective: "Proveer experiencias de laboratorio de calidad mundial sin limitaciones de espacio o materiales costosos"
+                    },
+                    {
+                        title: "Matemáticas con IA: Visualización y Modelado",
+                        desc: "Uso de inteligencia artificial para crear visualizaciones dinámicas, resolver problemas complejos y modelado matemático",
+                        objective: "Hacer las matemáticas más accesibles y relevantes mediante asistencia inteligente y representaciones visuales"
+                    },
+                    {
+                        title: "Ingeniería de Diseño y Pensamiento Creativo",
+                        desc: "Metodología de design thinking aplicada a soluciones ingenieriles para problemas reales de la comunidad",
+                        objective: "Desarrollar mentalidad innovadora y competencias de ingeniería mediante proyectos de impacto social"
+                    },
+                    {
+                        title: "Arte Digital y Creatividad Tecnológica",
+                        desc: "Fusión de expresión artística tradicional puertorriqueña con herramientas digitales de creación multimedia",
+                        objective: "Preservar y evolucionar identidad cultural mediante la integración creativa de arte y tecnología"
+                    },
+                    {
+                        title: "Ciencias con IA: Análisis de Datos y Simulaciones",
+                        desc: "Aplicación de inteligencia artificial para análisis de datos científicos, predicciones y simulaciones ambientales",
+                        objective: "Ampliar las capacidades de investigación científica estudiantil mediante herramientas de análisis inteligente"
+                    },
+                    {
+                        title: "Proyectos STEAM de Impacto Comunitario",
+                        desc: "Desarrollo de soluciones interdisciplinarias para desafíos reales de las comunidades puertorriqueñas",
+                        objective: "Conectar el aprendizaje STEAM con la transformación social tangible y el servicio comunitario"
+                    },
+                    {
+                        title: "Evaluación Auténtica en STEAM",
+                        desc: "Metodologías de assessment basadas en proyectos, portafolios digitales y presentaciones públicas de impacto",
+                        objective: "Evaluar competencias STEAM mediante demostraciones auténticas de aprendizaje y aplicación real"
+                    }
+                ]
+            },
+            emocional: {
+                title: "Inteligencia Emocional Educativa",
+                description: "Desarrollo integral de competencias socioemocionales para toda la comunidad escolar",
+                workshops: [
+                    {
+                        title: "SEL Integrado Transversalmente",
+                        desc: "Incorporación natural de aprendizaje socioemocional en todas las materias académicas y actividades escolares",
+                        objective: "Desarrollar competencias emocionales como base fundamental del aprendizaje efectivo y la ciudadanía"
+                    },
+                    {
+                        title: "Prevención de Burnout y Bienestar Docente",
+                        desc: "Estrategias de autocuidado, manejo de estrés, construcción de resiliencia profesional y balance vida-trabajo",
+                        objective: "Mantener equipos docentes saludables, motivados y sosteniblemente comprometidos con la excelencia educativa"
+                    },
+                    {
+                        title: "Liderazgo Emocionalmente Inteligente",
+                        desc: "Competencias de liderazgo empático, comunicación asertiva, gestión emocional de equipos y toma de decisiones consciente",
+                        objective: "Formar líderes educativos que inspiren desde la autenticidad, comprensión emocional y sabiduría relacional"
+                    },
+                    {
+                        title: "Mediación y Cultura de Paz",
+                        desc: "Técnicas restaurativas, círculos de diálogo, construcción de comunidades pacíficas y resolución colaborativa de conflictos",
+                        objective: "Crear ambientes escolares donde los conflictos se transformen en oportunidades de crecimiento y aprendizaje"
+                    },
+                    {
+                        title: "Regulación Emocional Estudiantil",
+                        desc: "Estrategias prácticas para enseñar a estudiantes el manejo de emociones intensas, autorregulación y calma consciente",
+                        objective: "Empoderar estudiantes con herramientas de autocontrol emocional para mayor éxito académico y bienestar personal"
+                    },
+                    {
+                        title: "Mindfulness y Atención Plena en Educación",
+                        desc: "Prácticas de mindfulness adaptadas al contexto educativo, meditación en el aula y conciencia presente",
+                        objective: "Cultivar atención consciente, reducir estrés escolar y mejorar la concentración para el aprendizaje profundo"
+                    },
+                    {
+                        title: "Educación Informada por Trauma",
+                        desc: "Comprensión del impacto del trauma en el aprendizaje, estrategias sensibles y creación de ambientes seguros",
+                        objective: "Crear espacios educativos que reconozcan, comprendan y respondan compassivamente a las experiencias traumáticas"
+                    },
+                    {
+                        title: "Construcción de Autoestima y Autoconcepto",
+                        desc: "Metodologías para fortalecer la autoestima estudiantil, desarrollar identidad positiva y confianza académica",
+                        objective: "Empoderar estudiantes con una autoestima sólida como fundamento para el éxito académico y personal"
+                    },
+                    {
+                        title: "Competencias Sociales y Relacionales",
+                        desc: "Desarrollo de habilidades de comunicación empática, trabajo colaborativo, empatía y ciudadanía digital responsable",
+                        objective: "Formar ciudadanos con excelentes competencias interpersonales para el éxito en sociedad y mundo laboral"
+                    },
+                    {
+                        title: "Manejo de Ansiedad y Estrés Escolar",
+                        desc: "Identificación, prevención y manejo de ansiedad académica, estrés de evaluación y presión de rendimiento",
+                        objective: "Crear ambientes de aprendizaje libres de ansiedad que promuevan el bienestar y el rendimiento auténtico"
+                    },
+                    {
+                        title: "Inteligencia Emocional Familiar",
+                        desc: "Capacitación para familias en competencias emocionales, comunicación efectiva y apoyo emocional en el hogar",
+                        objective: "Fortalecer el ecosistema emocional completo del estudiante mediante la colaboración familia-escuela"
+                    },
+                    {
+                        title: "Resiliencia y Crecimiento Post-Adversidad",
+                        desc: "Desarrollo de fortaleza emocional, capacidad de recuperación, mentalidad de crecimiento y transformación de desafíos",
+                        objective: "Cultivar resiliencia individual y colectiva para prosperar frente a adversidades y cambios constantes"
+                    }
+                ]
+            },
+            inclusion: {
+                title: "Educación Inclusiva Avanzada",
+                description: "Estrategias innovadoras para crear ambientes de aprendizaje verdaderamente inclusivos",
+                workshops: [
+                    {
+                        title: "Diseño Universal de Aprendizaje (UDL) Integral",
+                        desc: "Planificación que considera simultáneamente diversidades académicas, emocionales, culturales y físicas",
+                        objective: "Crear experiencias de aprendizaje accesibles y significativas para todos los estudiantes desde el diseño inicial"
+                    },
+                    {
+                        title: "Tecnologías Asistivas Humanizadas",
+                        desc: "Herramientas tecnológicas que potencian capacidades, fortalecen autoestima y promueven independencia estudiantil",
+                        objective: "Empoderar estudiantes con necesidades especiales mediante tecnología centrada en la persona y sus fortalezas"
+                    },
+                    {
+                        title: "Co-enseñanza Efectiva y Colaborativa",
+                        desc: "Modelos de colaboración entre maestros regulares y especialistas para máximo impacto inclusivo y aprendizaje compartido",
+                        objective: "Optimizar recursos humanos especializados para beneficiar a toda la población estudiantil de manera integrada"
+                    },
+                    {
+                        title: "Atención a Estudiantes Excepcionales",
+                        desc: "Enfoques innovadores para potenciar talentos, altas capacidades y habilidades excepcionales en contextos inclusivos",
+                        objective: "Maximizar el potencial de estudiantes con altas capacidades o talentos específicos sin exclusión social"
+                    },
+                    {
+                        title: "Adaptaciones Curriculares Diferenciadas",
+                        desc: "Modificación inteligente de contenidos, metodologías y evaluaciones para múltiples niveles de habilidad simultáneos",
+                        objective: "Garantizar acceso equitativo al currículo respetando ritmos y estilos de aprendizaje diversos"
+                    },
+                    {
+                        title: "Evaluación Inclusiva y Auténtica",
+                        desc: "Sistemas de assessment alternativos que permiten demostrar conocimientos mediante múltiples modalidades y formatos",
+                        objective: "Crear oportunidades de evaluación justas que reflejen verdaderamente el aprendizaje de cada estudiante"
+                    },
+                    {
+                        title: "Manejo de Diversidad Conductual en el Aula",
+                        desc: "Estrategias positivas para apoyar estudiantes con desafíos de comportamiento, TDAH y autorregulación",
+                        objective: "Crear ambientes de aprendizaje estructurados que apoyen la autorregulación y el éxito de todos"
+                    },
+                    {
+                        title: "Comunicación Aumentativa y Alternativa (CAA)",
+                        desc: "Sistemas de comunicación no verbal, tableros, aplicaciones y técnicas para estudiantes con desafíos comunicativos",
+                        objective: "Garantizar que todos los estudiantes puedan expresarse, participar y demostrar su comprensión efectivamente"
+                    },
+                    {
+                        title: "Inclusión de Estudiantes con Autismo",
+                        desc: "Estrategias especializadas, adaptaciones sensoriales y apoyo estructurado para el espectro autista",
+                        objective: "Crear ambientes escolares que celebren la neurodiversidad y potencien las fortalezas del espectro autista"
+                    },
+                    {
+                        title: "Transición y Preparación para Vida Independiente",
+                        desc: "Desarrollo de habilidades de vida práctica, vocacionales y sociales para estudiantes con necesidades especiales",
+                        objective: "Preparar estudiantes con diversidades para una transición exitosa a la vida adulta independiente y productiva"
+                    }
+                ]
+            },
+            evaluacion: {
+                title: "Assessment del Siglo XXI",
+                description: "Revolucionando la evaluación hacia sistemas adaptativos, auténticos y formativos",
+                workshops: [
+                    {
+                        title: "Evaluación Adaptativa con IA",
+                        desc: "Sistemas de assessment que se ajustan dinámicamente al nivel y progreso individual usando inteligencia artificial",
+                        objective: "Personalizar la evaluación para maximizar el aprendizaje, minimizar la ansiedad y optimizar el tiempo"
+                    },
+                    {
+                        title: "Portafolios Digitales Integrales",
+                        desc: "Documentación multimedia del crecimiento académico, emocional y social estudiantil a lo largo del tiempo",
+                        objective: "Crear narrativas de aprendizaje que celebren la totalidad de la persona estudiante y su evolución"
+                    },
+                    {
+                        title: "Assessment Basado en Competencias Reales",
+                        desc: "Evaluación de habilidades aplicables en contextos auténticos de vida, trabajo y ciudadanía del siglo XXI",
+                        objective: "Alinear la evaluación escolar con las competencias realmente demandadas en el mundo real"
+                    },
+                    {
+                        title: "Medición de Impacto Social Educativo",
+                        desc: "Metodologías para evaluar cómo la educación transforma comunidades, sociedades y genera bienestar colectivo",
+                        objective: "Documentar y potenciar el impacto transformador de la educación en Puerto Rico y más allá"
+                    },
+                    {
+                        title: "Rúbricas Inteligentes y Dinámicas",
+                        desc: "Creación de rúbricas que evolucionan, se personalizan y proporcionan retroalimentación específica y actionable",
+                        objective: "Transformar la evaluación tradicional en herramientas de crecimiento y mejora continua"
+                    },
+                    {
+                        title: "Assessment Formativo Continuo",
+                        desc: "Técnicas de evaluación en tiempo real que informan la instrucción y apoyan el aprendizaje momento a momento",
+                        objective: "Hacer de la evaluación una parte natural y constructiva del proceso de aprendizaje diario"
+                    },
+                    {
+                        title: "Evaluación de Competencias Socioemocionales",
+                        desc: "Instrumentos y metodologías para medir crecimiento en inteligencia emocional, empatía y habilidades sociales",
+                        objective: "Reconocer y nutrir el desarrollo integral del estudiante más allá de lo puramente académico"
+                    },
+                    {
+                        title: "Assessment Colaborativo y Coevaluación",
+                        desc: "Metodologías donde estudiantes evalúan su propio trabajo y el de sus pares de manera constructiva",
+                        objective: "Desarrollar metacognición, pensamiento crítico y habilidades de retroalimentación efectiva"
+                    },
+                    {
+                        title: "Evaluación Multimodal y Alternativa",
+                        desc: "Diversas formas de demostrar conocimiento: oral, visual, kinestésica, artística y tecnológica",
+                        objective: "Honrar diferentes estilos de aprendizaje y formas de expresión del conocimiento adquirido"
+                    },
+                    {
+                        title: "Assessment de Proyectos e Investigación",
+                        desc: "Evaluación de procesos de investigación, pensamiento científico y proyectos de impacto comunitario",
+                        objective: "Valorar el pensamiento crítico, la investigación rigurosa y la aplicación práctica del conocimiento"
+                    },
+                    {
+                        title: "Análisis de Datos de Assessment",
+                        desc: "Interpretación de resultados de evaluación para informar decisiones pedagógicas y mejora institucional",
+                        objective: "Convertir datos de evaluación en insights accionables para la mejora educativa continua"
+                    },
+                    {
+                        title: "Assessment Culturalmente Responsivo",
+                        desc: "Evaluación que respeta, incluye y celebra diversidades culturales, lingüísticas y socioeconómicas",
+                        objective: "Eliminar sesgos evaluativos y crear assessment equitativo para todos los estudiantes"
+                    },
+                    {
+                        title: "Retroalimentación Efectiva y Transformadora",
+                        desc: "Técnicas para proporcionar retroalimentación que motive, oriente y acelere el crecimiento estudiantil",
+                        objective: "Convertir la retroalimentación en una herramienta poderosa de motivación y crecimiento personal"
+                    }
+                ]
+            },
+            liderazgo: {
+                title: "Liderazgo Educativo 4.0",
+                description: "Desarrollo de capacidades de liderazgo transformacional para la era digital",
+                workshops: [
+                    {
+                        title: "Transformación Digital Institucional Humanizada",
+                        desc: "Liderar el cambio tecnológico preservando y potenciando el alma humana de la educación",
+                        objective: "Guiar procesos de innovación tecnológica sin perder la esencia pedagógica fundamental"
+                    },
+                    {
+                        title: "Gestión Basada en Datos e Intuición",
+                        desc: "Equilibrio entre análisis cuantitativo riguroso y sabiduría emocional experiencial para decisiones óptimas",
+                        objective: "Integrar inteligencia analítica y emocional para decisiones de liderazgo efectivas y humanas"
+                    },
+                    {
+                        title: "Comunicación de Crisis con Compasión",
+                        desc: "Estrategias de comunicación empática durante situaciones de tensión, conflicto o cambios disruptivos",
+                        objective: "Desarrollar resiliencia organizacional mediante comunicación auténtica, compasiva y efectiva"
+                    },
+                    {
+                        title: "Liderazgo Distribuido y Colaborativo",
+                        desc: "Modelos de liderazgo compartido que potencian talentos individuales y capacidades distributivas del equipo",
+                        objective: "Crear culturas de liderazgo colectivo donde cada miembro contribuye desde sus fortalezas únicas"
+                    },
+                    {
+                        title: "Liderazgo con IA: Decisiones Inteligentes",
+                        desc: "Uso de inteligencia artificial para análisis predictivo, automatización de procesos y toma de decisiones estratégicas",
+                        objective: "Potenciar el liderazgo educativo mediante herramientas inteligentes que amplifican la capacidad humana"
+                    },
+                    {
+                        title: "Gestión del Cambio y Innovación Educativa",
+                        desc: "Estrategias para liderar transformaciones institucionales, superar resistencia y cultivar mentalidad innovadora",
+                        objective: "Desarrollar competencias para liderar cambios sustentables que mejoren la experiencia educativa"
+                    },
+                    {
+                        title: "Desarrollo y Retención de Talento Docente",
+                        desc: "Estrategias para atraer, desarrollar, motivar y retener educadores excepcionales en la institución",
+                        objective: "Crear ecosistemas donde los mejores educadores prosperen, crezcan y permanezcan comprometidos"
+                    },
+                    {
+                        title: "Liderazgo Inclusivo y Equidad Educativa",
+                        desc: "Competencias para crear culturas institucionales verdaderamente inclusivas que celebren la diversidad",
+                        objective: "Eliminar barreras sistemáticas y crear oportunidades equitativas para todos los miembros de la comunidad"
+                    },
+                    {
+                        title: "Visión Estratégica y Planificación a Futuro",
+                        desc: "Desarrollo de visión institucional inspiradora, planificación estratégica y anticipación de tendencias educativas",
+                        objective: "Crear y comunicar visiones que inspiren acción colectiva hacia un futuro educativo transformador"
+                    }
+                ]
+            },
+            curriculo: {
+                title: "Currículo Integral del Siglo XXI",
+                description: "Diseño curricular que integra competencias académicas, digitales, socioemocionales y culturales",
+                workshops: [
+                    {
+                        title: "Mapeo Curricular Inteligente con IA",
+                        desc: "Alineación automática de contenidos, competencias y estándares con coherencia vertical y horizontal usando IA",
+                        objective: "Crear currículos coherentes y alineados que respeten la progresión natural del aprendizaje estudiantil"
+                    },
+                    {
+                        title: "Aprendizaje Interdisciplinario Auténtico",
+                        desc: "Conexiones naturales entre materias que reflejen la integralidad del conocimiento humano y la realidad",
+                        objective: "Desarrollar pensamiento sistémico e integrado que prepare para la complejidad del mundo real"
+                    },
+                    {
+                        title: "Currículo Culturalmente Sustentado",
+                        desc: "Celebración de la puertorriqueñidad como base para competencias y perspectivas globales del siglo XXI",
+                        objective: "Fortalecer identidad cultural mientras se desarrollan competencias universales contemporáneas"
+                    },
+                    {
+                        title: "Proyectos de Impacto Comunitario",
+                        desc: "Aprendizaje basado en servicio que beneficia tangiblemente las comunidades locales puertorriqueñas",
+                        objective: "Conectar el aprendizaje escolar con la transformación social comunitaria real y sostenible"
+                    },
+                    {
+                        title: "Competencias del Siglo XXI Integradas",
+                        desc: "Incorporación transversal de pensamiento crítico, creatividad, colaboración y comunicación en todas las materias",
+                        objective: "Preparar estudiantes con habilidades esenciales para prosperar en la economía del conocimiento global"
+                    },
+                    {
+                        title: "Currículo Basado en Competencias",
+                        desc: "Diseño curricular centrado en demostración de competencias reales en lugar de acumulación de contenidos",
+                        objective: "Priorizar el dominio profundo y la aplicación práctica sobre la memorización superficial"
+                    },
+                    {
+                        title: "Aprendizaje Basado en Proyectos (ABP)",
+                        desc: "Metodología donde estudiantes adquieren conocimientos mediante investigación y solución de problemas auténticos",
+                        objective: "Hacer el aprendizaje relevante, significativo y conectado con desafíos del mundo real"
+                    },
+                    {
+                        title: "Integración de Sostenibilidad y Medio Ambiente",
+                        desc: "Incorporación de conciencia ambiental, sostenibilidad y cambio climático en todas las disciplinas curriculares",
+                        objective: "Formar ciudadanos ambientalmente conscientes y comprometidos con la sostenibilidad planetaria"
+                    },
+                    {
+                        title: "Currículo Personalizado con IA",
+                        desc: "Adaptación inteligente de rutas de aprendizaje, contenidos y ritmos según perfiles individuales estudiantiles",
+                        objective: "Maximizar el potencial de cada estudiante mediante experiencias de aprendizaje personalizadas"
+                    },
+                    {
+                        title: "Evaluación Curricular Continua y Mejora",
+                        desc: "Sistemas de monitoreo, evaluación y refinamiento constante de la efectividad curricular institucional",
+                        objective: "Garantizar que el currículo evolucione constantemente para mantenerse relevante y efectivo"
+                    }
+                ]
+            }
+        };
+
+        function showServiceModal(serviceId) {
+            const modal = document.getElementById('serviceModal');
+            const content = document.getElementById('modalContent');
+            const service = serviceData[serviceId];
+            
+            let html = `
+                <h2 style="color: #1e293b; margin-bottom: 1rem; font-size: 2rem;">${service.title}</h2>
+                <p style="color: #64748b; margin-bottom: 2rem; font-size: 1.1rem;">${service.description}</p>
+            `;
+            
+            service.workshops.forEach((workshop, index) => {
+                html += `
+                    <div class="workshop-detail">
+                        <div class="workshop-title">${index + 1}. ${workshop.title}</div>
+                        <p style="color: #64748b; margin: 0.5rem 0;">${workshop.desc}</p>
+                        <div class="workshop-objective">
+                            <strong>Objetivo de Aprendizaje:</strong> ${workshop.objective}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `
+                <div style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+                    <h3 style="margin-bottom: 1rem;">¿Interesado en ${service.title}?</h3>
+                    <p style="margin-bottom: 1.5rem; opacity: 0.9;">Consultoría gratuita para evaluar necesidades específicas y diseñar plan personalizado</p>
+                    <a href="tel:939-358-1722" class="cta-button" style="background: white; color: #1e3a8a;">Llamar Ahora</a>
+                    <a href="mailto:milton@avanza.tech" class="cta-button" style="background: rgba(255,255,255,0.2);">Solicitar Información</a>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('serviceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Efectos visuales de entrada
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
